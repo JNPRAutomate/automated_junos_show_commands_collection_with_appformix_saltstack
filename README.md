@@ -1,7 +1,11 @@
 ## SaltStack Git execution module demo 
+ssh to the Salt master.
+
+On the Salt master, list all the keys.
 ```
 salt-key -L
 ```
+These commands are run from the master. The master uses the Git execution module. The minion ```core-rtr-p-01``` is executing these commands.    
 ```
 # salt core-rtr-p-01 git.clone /tmp/local_copy git@github.com:JNPRAutomate/appformix_saltstack_automated_show_commands_collection.git identity="/root/.ssh/id_rsa"
 core-rtr-p-01:
