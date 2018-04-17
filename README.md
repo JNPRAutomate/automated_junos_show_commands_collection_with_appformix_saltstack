@@ -3,6 +3,7 @@ Appformix is used for network devices monitoring.
 Appformix send webhook notifications to SaltStack.   
 The webhook notifications provides the device name and other details.  
 SaltStack automatically collects junos show command output on the "faulty" JUNOS device and archive the output on a Git server.    
+![Appformix-SaltStack-Junos-Git.png](Appformix-SaltStack-Junos-Git.png)  
 
 # Demo building blocks: 
 - Juniper devices
