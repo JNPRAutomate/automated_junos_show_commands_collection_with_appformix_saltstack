@@ -461,7 +461,7 @@ Run this command on the master to ask to the proxy core-rtr-p-01 to execute the 
 
 This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data from junos devices (show commands) and archieve the data collected on a git server  
 
-Add this file in the junos directory of the ```organization/network_model``` repository (```gitfs_remotes```) .  
+Add this file in the ```junos``` directory of the ```organization/network_model``` repository (```gitfs_remotes```) .  
 
 ## Pillars 
 
