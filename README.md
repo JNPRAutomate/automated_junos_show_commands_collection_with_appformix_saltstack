@@ -171,7 +171,7 @@ show_chassis_hardware:
     - format: text
 ```
 
-The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_junos_show_commands_example_2/sls](collect_junos_show_commands_example_2.sls)
+The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls)
 
 ```
 # salt core-rtr-p-01 state.apply collect_junos_show_commands_example_2
