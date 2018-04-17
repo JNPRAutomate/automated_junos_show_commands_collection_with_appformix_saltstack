@@ -352,8 +352,9 @@ core-rtr-p-01:
 
 # salt core-rtr-p-01 git.push /tmp/local_copy origin master identity="/root/.ssh/id_rsa"
 core-rtr-p-01:
-
 ```
+The above commands pushed the file [test.txt](test.txt) to this repository  
+
 ## Test your Junos proxy daemons
 
 ssh to the Salt master.
