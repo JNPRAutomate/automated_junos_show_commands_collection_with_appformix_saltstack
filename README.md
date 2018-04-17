@@ -103,7 +103,7 @@ List the grains:
 # salt core-rtr-p-01 grains.ls
 ...
 ```
-Get the value of the key nodename. 
+Get the value of the grain nodename. 
 ```
 # salt core-rtr-p-01 grains.item nodename
 core-rtr-p-01:
