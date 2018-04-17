@@ -1,19 +1,7 @@
+## SaltStack Git execution module demo 
 ```
 salt-key -L
 ```
-```
-salt core-rtr-p-01 grains.ls
-```
-```
-salt core-rtr-p-01 grains.item nodename
-```
-```
-# salt core-rtr-p-01 test.ping
-core-rtr-p-01:
-    True
-```
-
-## SaltStack Git execution module demo 
 ```
 # salt core-rtr-p-01 git.clone /tmp/local_copy git@github.com:JNPRAutomate/appformix_saltstack_automated_show_commands_collection.git identity="/root/.ssh/id_rsa"
 core-rtr-p-01:
@@ -37,7 +25,7 @@ core-rtr-p-01:
 core-rtr-p-01:
     ksator
 
-d# salt core-rtr-p-01 git.pull /tmp/local_copy
+# salt core-rtr-p-01 git.pull /tmp/local_copy
 core-rtr-p-01:
     Already up-to-date.
 
@@ -86,7 +74,44 @@ core-rtr-p-01:
 core-rtr-p-01:
 
 ```
+## Test your Junos proxy daemons
 
+ssh to the Salt master.
+
+On the Salt master, list all the keys. 
+```
+# salt-key -L
+```
+Run this command to check if the minions are up and responding to the master. This is not an ICMP ping.
+```
+# salt -G 'roles:minion' test.ping
+```
+```
+# salt core-rtr-p-01 test.ping
+core-rtr-p-01:
+    True
+```
+List the grains: 
+```
+# salt core-rtr-p-01 grains.ls
+...
+```
+Get the value of the key nodename. 
+```
+# salt core-rtr-p-01 grains.item nodename
+core-rtr-p-01:
+    ----------
+    nodename:
+        svl-util-01
+```
+So, the junos proxy daemon ```core-rtr-p-01``` is running on the minion ```svl-util-01```  
+
+The Salt Junos proxy has some requirements (junos-eznc python library and other dependencies).
+```
+# salt svl-util-01 cmd.run "pip list | grep junos"
+svl-util-01:
+    junos-eznc (2.1.7)
+```
 ```
 # salt core-rtr-p-01 junos.cli "show chassis hardware"
 core-rtr-p-01:
@@ -106,6 +131,7 @@ core-rtr-p-01:
     out:
         True
 ```
+## 
 ```
 # salt core-rtr-p-01 state.apply collect_junos_show_commands
 ```
