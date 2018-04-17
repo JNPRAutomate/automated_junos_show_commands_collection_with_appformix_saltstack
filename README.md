@@ -256,13 +256,19 @@ fileserver_backend:
 gitfs_remotes:
   - ssh://git@gitlab/organization/network_model.git
 ```
-
+```
+file_roots:
+  base:
+    - /srv/salt
+    - /srv/local
+```
 So:
 - the Salt master is listening webhooks on port 5001. It generates equivalents ZMQ messages to the event bus
 runners are in the directory /srv/runners on the Salt master
 - the Salt master is listening junos syslog messages on port 516. It generates equivalents ZMQ messages to the event bus
-- external pillars are in this github repository (master branch)
-- Salt uses this github repository as a remote file server.
+- external pillars are in the gitlab repository organization/network_parameters  (master branch)
+- Salt uses the gitlab repository organization/network_model.git this github repository as a remote file server.  
+- Salt uses the directories /srv/salt and /srv/local on the master as a remote file server.  
 
 
 ## SaltStack Git execution module basic demo
