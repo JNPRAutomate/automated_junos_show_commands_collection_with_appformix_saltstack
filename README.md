@@ -22,3 +22,6 @@ core-rtr-p-01:
     out:
         True
 ```
+```
+# salt core-rtr-p-01 state.apply collect_junos_show_commands
+```
