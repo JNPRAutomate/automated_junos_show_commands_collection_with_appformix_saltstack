@@ -509,7 +509,7 @@ This reactor binds ```salt/engines/hook/appformix_to_saltstack``` to ```/srv/rea
 ```
 # more /etc/salt/master.d/reactor.conf
 reactor:
-   - 'salt/engines/hook/appformix_to_jedi':
+   - 'salt/engines/hook/appformix_to_saltstack':
        - /srv/reactor/automate_show_commands.sls
 ```
 
