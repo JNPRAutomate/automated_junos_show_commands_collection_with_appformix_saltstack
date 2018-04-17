@@ -135,7 +135,48 @@ core-rtr-p-01:
     out:
         True
 ```
-## 
+## apply sls files with junos modules basic demo
+
+The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) are equivalents.  
+
+```
+# more /srv/salt/collect_junos_show_commands_example_1.sls
+show version:
+  junos:
+    - cli
+    - dest: /tmp/show_version.txt
+    - format: text
+show chassis hardware:
+  junos:
+    - cli
+    - dest: /tmp/show_chassis_hardware.txt
+    - format: text
+```
+The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls)
+```
+# salt core-rtr-p-01 state.apply collect_junos_show_commands_example_1
+```
+```
+# more /srv/salt/collect_junos_show_commands_example_2.sls
+show_version:
+  junos.cli:
+    - name: show version
+    - dest: /tmp/show_version.txt
+    - format: text
+show_chassis_hardware:
+  junos.cli:
+    - name: show chassis hardware
+    - dest: /tmp/show_chassis_hardware.txt
+    - format: text
+```
+
+The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_junos_show_commands_example_12sls](collect_junos_show_commands_example_2.sls)
+
+```
+# salt core-rtr-p-01 state.apply collect_junos_show_commands_example_2
+```
+##
+
 ```
 # salt core-rtr-p-01 state.apply collect_junos_show_commands
 ```
