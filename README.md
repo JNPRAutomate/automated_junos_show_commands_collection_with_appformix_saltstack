@@ -18,8 +18,8 @@ SaltStack automatically collects junos show command output on the "faulty" JUNOS
 # Building blocks role: 
 
 ## Appformix:  
-- Collects data from Junos devices (JTI native telemetry and SNMP)
--Generates webhooks notifications (HTTP POST with a JSON body) to SaltStack when the condition of an alarm is observed. The JSON body provides the device name and other details
+- Collects data from Junos devices (JTI native telemetry and SNMP)  
+- Generates webhooks notifications (HTTP POST with a JSON body) to SaltStack when the condition of an alarm is observed. The JSON body provides the device name and other details
 
 ## SaltStack: 
 - In addition to the Salt master, Salt Junos proxy minions are required (one process per Junos device is required)  
@@ -42,6 +42,9 @@ SaltStack automatically collects junos show command output on the "faulty" JUNOS
 - Install SaltStack
 
 # SaltStack configuration details for this demo
+
+## Install the master and a minion and junos proxy
+This is not covered by this documentation.
 
 ## Salt master configuration file 
 
