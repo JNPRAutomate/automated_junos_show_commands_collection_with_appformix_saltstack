@@ -1,4 +1,5 @@
-## SaltStack Git execution module demo 
+## SaltStack Git execution module basic demo
+
 ssh to the Salt master.
 
 On the Salt master, list all the keys.
@@ -135,7 +136,7 @@ core-rtr-p-01:
     out:
         True
 ```
-## apply sls files with junos modules basic demo
+## sls files with junos modules examples
 
 The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) are equivalents.  
 
@@ -170,15 +171,17 @@ show_chassis_hardware:
     - format: text
 ```
 
-The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_junos_show_commands_example_12sls](collect_junos_show_commands_example_2.sls)
+The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_junos_show_commands_example_2/sls](collect_junos_show_commands_example_2.sls)
 
 ```
 # salt core-rtr-p-01 state.apply collect_junos_show_commands_example_2
 ```
-##
+## sls file to collect junos show commands and to archieve the output to git
+
+[collect_junos_show_commands_and_archieve_to_git.sls](collect_junos_show_commands_and_archieve_to_git.sls)
 
 ```
-# salt core-rtr-p-01 state.apply collect_junos_show_commands
+# salt core-rtr-p-01 state.apply collect_junos_show_commands_and_archieve_to_git
 ```
 
 
