@@ -392,7 +392,7 @@ The Salt Junos proxy has some requirements (junos-eznc python library and other 
 svl-util-01:
     junos-eznc (2.1.7)
 ```
-### Execution module
+### Junos execution modules
 
 Run this command on the master to ask to a proxy to use a Junos execution module:   
 ```
@@ -414,7 +414,7 @@ core-rtr-p-01:
     out:
         True
 ```
-### state module 
+### Junos state modules 
 
 The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) use a diff syntax but they are equivalents.  
 
@@ -478,6 +478,8 @@ base:
 {% endif %}
 ```
 
+## Pillars 
+
 The pillar ```data_collection``` is used by the file collect_data_and_archieve_to_git.sls  
 Update the file ```production.sls``` in the repository ```organization/network_parameters``` (```ext_pillar```) to define the pillar ```data_collection``` 
 ```
@@ -486,21 +488,18 @@ data_collection:
    - command: show chassis hardware
 ```
 
-Test your automation content manually from the master.  
-Example with the proxy ```core-rtr-p-02``` (it manages the network device ```core-rtr-p-02```)
-```
-salt core-rtr-p-01 state.apply junos.collect_data_and_archieve_to_git
-```
+## Test your automation content manually from the master
+
+Example with the proxy ```core-rtr-p-02``` (it manages the network device ```core-rtr-p-02```).   
 Run this command on the master to ask to the proxy ```core-rtr-p-01``` to execute it.  
 ```
-# salt core-rtr-p-01 state.apply collect_data_and_archieve_to_git
+salt core-rtr-p-01 state.apply junos.collect_data_and_archieve_to_git
 ```
 
 The data collected by the proxy ```core-rtr-p-01``` is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
 
 
-
-###  Update the Salt reactor
+##  Update the Salt reactor
 
 Update the Salt reactor file  
 The reactor binds sls files to event tags. The reactor has a list of event tags to be matched, and each event tag has a list of reactor SLS files to be run. So these sls files define the SaltStack reactions.  
@@ -539,11 +538,6 @@ automate_show_commands:
     - arg:
       - collect_data_and_archieve_to_git
 ```
-```
-# salt-run state.event pretty=True
-```
-
-
 
 # Run the demo: 
 
@@ -589,7 +583,7 @@ Salt provides a runner that displays events in real-time as they are received on
 
 Trigger an alarm  to get a webhook notification sent by Appformix to SaltStack 
 ```
-salt "core-rtr-p-02" junos.rpc 'ping' rapid=True
+# salt "core-rtr-p-02" junos.rpc 'ping' rapid=True
 ```
 
 ## Verify on the git server 
