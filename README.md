@@ -465,3 +465,134 @@ The data collected by the proxy ```core-rtr-p-01```  is archieved in the directo
 
 
 
+
+
+
+
+Add the file ```junos/collect_data_and_archieve_to_git.sls``` to the ```organization/network_model``` repository (```gitfs_remotes```)
+
+Here's an example for the ```top.sls``` file at the root of the gitlab repository ```organization/network_parameters``` (```ext_pillar```)  
+```
+{% set id = salt['grains.get']('id') %} 
+{% set host = salt['grains.get']('host') %} 
+
+base:
+  '*':
+    - production
+   
+{% if host == '' %}
+  '{{ id }}':
+    - {{ id }}
+{% endif %}
+```
+
+The pillar ```data_collection``` is used by the file collect_data_and_archieve_to_git.sls  
+Update the file ```production.sls``` in the repository ```organization/network_parameters``` (```ext_pillar```) to define the pillar ```data_collection``` 
+```
+data_collection:  
+   - command: show interfaces  
+   - command: show chassis hardware
+```
+
+Test your automation content manually from the master.  
+Example with the proxy ```core-rtr-p-02``` (it manages the network device ```core-rtr-p-02```)
+```
+salt core-rtr-p-01 state.apply junos.collect_data_and_archieve_to_git
+```
+The data collected by the proxy ```core-rtr-p-01``` is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
+
+
+
+###  Update the Salt reactor
+
+Update the Salt reactor file  
+The reactor binds sls files to event tags. The reactor has a list of event tags to be matched, and each event tag has a list of reactor SLS files to be run. So these sls files define the SaltStack reactions.  
+Update the reactor.  
+This reactor binds ```salt/engines/hook/appformix_to_saltstack``` to ```/srv/reactor/automate_show_commands.sls``` 
+```
+# more /etc/salt/master.d/reactor.conf
+reactor:
+   - 'salt/engines/hook/appformix_to_jedi':
+       - /srv/reactor/automate_show_commands.sls
+```
+
+Restart the Salt master:
+```
+service salt-master stop
+service salt-master start
+```
+
+The command ```salt-run reactor.list``` lists currently configured reactors:  
+```
+salt-run reactor.list
+```
+
+Create the sls reactor file ```/srv/reactor/automate_show_commands.sls```.  
+It parses the data from the ZMQ message that has the tags ```salt/engines/hook/appformix_to_saltstack``` and extracts the network device name.  
+It then ask to the Junos proxy minion that manages the "faulty" device to apply the ```junos/collect_data_and_archieve_to_git.sls``` file.  
+the ```junos/collect_data_and_archieve_to_git.sls``` file executed by the Junos proxy minion collects show commands from the "faulty" device and archieve the data collected to a git server. 
+
+```
+# more /srv/reactor/automate_show_commands.sls
+{% set body_json = data['body']|load_json %}
+{% set devicename = body_json['status']['entityId'] %}
+automate_show_commands:
+  local.state.apply:
+    - tgt: "{{ devicename }}"
+    - arg:
+      - collect_data_and_archieve_to_git
+```
+```
+# salt-run state.event pretty=True
+```
+
+
+
+# Run the demo: 
+
+## Create Appformix webhook notifications.  
+
+You can do it from Appformix GUI, settings, Notification Settings, Notification Services, add service.    
+Then:  
+service name: appformix_to_saltstack  
+URL endpoint: provide the Salt master IP and Salt webhook listerner port (```HTTP://192.168.128.174:5001/appformix_to_saltstack``` as example).  
+setup  
+
+## Create Appformix alarms, and map these alarms to the webhook you just created.
+
+You can do it from the Appformix GUI, Alarms, add rule.  
+Then, as example:   
+Name: in_unicast_packets_core-rtr-p-02,  
+Module: Alarms,  
+Alarm rule type: Static,  
+scope: network devices,  
+network device/Aggregate: core-rtr-p-02,  
+generate: generate alert,  
+For metric: interface_in_unicast_packets,  
+When: Average,  
+Interval(seconds): 60,  
+Is: Above,  
+Threshold(Packets/s): 300,  
+Severity: Warning,  
+notification: custom service,  
+services: appformix_to_saltstack,  
+save.
+
+## Watch webhook notifications and ZMQ messages  
+
+Run this command on the master to see webhook notifications:
+```
+# tcpdump port 5001 -XX 
+```
+
+Salt provides a runner that displays events in real-time as they are received on the Salt master:  
+```
+# salt-run state.event pretty=True
+```
+
+Trigger an alarm  to get a webhook notification sent by Appformix to SaltStack 
+```
+salt "core-rtr-p-02" junos.rpc 'ping' rapid=True
+```
+
+## Verify on the git server 
