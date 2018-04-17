@@ -4,7 +4,7 @@ make sure the local repo doesnt exist:
   file.absent:
     - name: /tmp/local_repo
 
-git clone the remote repo:
+git clone:
   module.run:
     - name: git.clone
     - cwd: /tmp/local_repo
@@ -36,19 +36,19 @@ git pull:
     - name: git.pull
     - cwd: /tmp/local_repo
 
-make sure the device directory is present:
+make sure the device directory is presents:
   file.directory:
     - name: /tmp/local_repo/{{ device_directory }}
 
 {% for item in pillar['data_collection'] %}
 
-pass junos command {{ item.command }}:
+{{ item.command }}:
   junos.cli:
     - name: {{ item.command }}
     - dest: /tmp/local_repo/{{ device_directory }}/{{ item.command }}.txt
     - format: text
 
-git add the data collected by {{ item.command }}:
+git add {{ item.command }}:
   module.run:
     - name: git.add
     - cwd: /tmp/local_repo
@@ -62,7 +62,7 @@ git commit:
     - cwd: /tmp/local_repo
     - message: 'The commit message'
 
-git push to remote repo:
+git push:
   module.run:
     - name: git.push
     - cwd: /tmp/local_repo
@@ -73,3 +73,4 @@ git push to remote repo:
 delete local repo:
   file.absent:
     - name: /tmp/local_repo
+
