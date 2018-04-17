@@ -1,4 +1,13 @@
 ```
+salt-key -L
+```
+```
+salt core-rtr-p-01 grains.ls
+```
+```
+salt core-rtr-p-01 grains.item nodename
+```
+```
 # salt core-rtr-p-01 test.ping
 core-rtr-p-01:
     True
