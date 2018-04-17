@@ -392,6 +392,9 @@ The Salt Junos proxy has some requirements (junos-eznc python library and other 
 svl-util-01:
     junos-eznc (2.1.7)
 ```
+### Execution module
+
+Run this command on the master to ask to a proxy to use a Junos execution module:   
 ```
 # salt core-rtr-p-01 junos.cli "show chassis hardware"
 core-rtr-p-01:
@@ -411,11 +414,11 @@ core-rtr-p-01:
     out:
         True
 ```
-## examples of sls files to collect show commands 
+### state module 
 
 The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) use a diff syntax but they are equivalents.  
 
-### Syntax 1
+#### Syntax 1
 
 ```
 # more /srv/salt/collect_junos_show_commands_example_1.sls
@@ -435,7 +438,7 @@ Run this command on the master to ask to the proxy core-rtr-p-01 to execute the 
 # salt core-rtr-p-01 state.apply collect_show_commands_example_1
 ```
 
-### Syntax 2
+#### Syntax 2
 ```
 # more /srv/salt/collect_show_commands_example_2.sls
 show_version:
@@ -456,18 +459,7 @@ Run this command on the master to ask to the proxy core-rtr-p-01 to execute the 
 ```
 ## sls file to collect junos show commands and to archieve the output to git
 
-This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data and archieve the data collected on a git server  
-Run this command on the master to ask to the proxy ```core-rtr-p-01``` to execute it.  
-```
-# salt core-rtr-p-01 state.apply collect_data_and_archieve_to_git
-```
-The data collected by the proxy ```core-rtr-p-01```  is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
-
-
-
-
-
-
+This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data from junos devices (show commands) and archieve the data collected on a git server  
 
 Add the file ```junos/collect_data_and_archieve_to_git.sls``` to the ```organization/network_model``` repository (```gitfs_remotes```)
 
@@ -499,6 +491,11 @@ Example with the proxy ```core-rtr-p-02``` (it manages the network device ```cor
 ```
 salt core-rtr-p-01 state.apply junos.collect_data_and_archieve_to_git
 ```
+Run this command on the master to ask to the proxy ```core-rtr-p-01``` to execute it.  
+```
+# salt core-rtr-p-01 state.apply collect_data_and_archieve_to_git
+```
+
 The data collected by the proxy ```core-rtr-p-01``` is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
 
 
@@ -596,3 +593,4 @@ salt "core-rtr-p-02" junos.rpc 'ping' rapid=True
 ```
 
 ## Verify on the git server 
+The data collected by the proxy ```core-rtr-p-01```  is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
