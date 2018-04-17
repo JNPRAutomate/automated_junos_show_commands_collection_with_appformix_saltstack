@@ -138,7 +138,9 @@ core-rtr-p-01:
 ```
 ## examples of sls files to collect show commands 
 
-The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) are equivalents.  
+The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) use a diff syntax but they are equivalents.  
+
+### Syntax 1
 
 ```
 # more /srv/salt/collect_junos_show_commands_example_1.sls
@@ -153,10 +155,12 @@ show chassis hardware:
     - dest: /tmp/show_chassis_hardware.txt
     - format: text
 ```
-The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_show_commands_example_1.sls](collect_show_commands_example_1.sls)
+Run this command on the master to ask to the proxy core-rtr-p-01 to execute the sls file  [collect_show_commands_example_1.sls](collect_show_commands_example_1.sls).
 ```
 # salt core-rtr-p-01 state.apply collect_show_commands_example_1
 ```
+
+### Syntax 2
 ```
 # more /srv/salt/collect_show_commands_example_2.sls
 show_version:
@@ -171,14 +175,13 @@ show_chassis_hardware:
     - format: text
 ```
 
-The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect_show_commands_example_2.sls](collect_show_commands_example_2.sls)
-
+Run this command on the master to ask to the proxy core-rtr-p-01 to execute the sls file  [collect_show_commands_example_2.sls](collect_show_commands_example_2.sls).
 ```
 # salt core-rtr-p-01 state.apply collect_show_commands_example_2
 ```
 ## sls file to collect junos show commands and to archieve the output to git
 
-This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data and archieve the data collected on a git server 
+This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data and archieve the data collected on a git server  
 Run this command on the master to ask to the proxy ```core-rtr-p-01``` to execute it.  
 ```
 # salt core-rtr-p-01 state.apply collect_data_and_archieve_to_git
