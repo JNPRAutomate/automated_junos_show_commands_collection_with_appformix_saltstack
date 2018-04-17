@@ -453,7 +453,6 @@ show_chassis_hardware:
     - dest: /tmp/show_chassis_hardware.txt
     - format: text
 ```
-
 Run this command on the master to ask to the proxy core-rtr-p-01 to execute the sls file  [collect_show_commands_example_2.sls](collect_show_commands_example_2.sls).
 ```
 # salt core-rtr-p-01 state.apply collect_show_commands_example_2
@@ -462,7 +461,9 @@ Run this command on the master to ask to the proxy core-rtr-p-01 to execute the 
 
 This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data from junos devices (show commands) and archieve the data collected on a git server  
 
-Add the file ```junos/collect_data_and_archieve_to_git.sls``` to the ```organization/network_model``` repository (```gitfs_remotes```)
+Add this file in the junos directory of the ```organization/network_model``` repository (```gitfs_remotes```) .  
+
+## Pillars 
 
 Here's an example for the ```top.sls``` file at the root of the gitlab repository ```organization/network_parameters``` (```ext_pillar```)  
 ```
@@ -479,9 +480,7 @@ base:
 {% endif %}
 ```
 
-## Pillars 
-
-The pillar ```data_collection``` is used by the file collect_data_and_archieve_to_git.sls  
+The pillar ```data_collection``` is used by the file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls)  
 Update the file ```production.sls``` in the repository ```organization/network_parameters``` (```ext_pillar```) to define the pillar ```data_collection``` 
 ```
 data_collection:  
