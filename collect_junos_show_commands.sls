@@ -8,7 +8,7 @@ git clone the remote repo:
   module.run:
     - name: git.clone
     - cwd: /tmp/local_repo
-    - url: git@github.com:ksator/MQTT_hello_world.git
+    - url: git@github.com:JNPRAutomate/appformix_saltstack_automated_show_commands_collection.git
     - identity: "/root/.ssh/id_rsa"
 
 git config set email:
