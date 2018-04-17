@@ -1,3 +1,86 @@
+# Demo overview:  
+Appformix is used for network devices monitoring.  
+Appformix send webhook notifications to SaltStack.   
+The webhook notifications provides the device name and other details.  
+SaltStack automatically collects junos show command output on the "faulty" JUNOS device and archieve the output on a Git server.    
+
+# Demo building blocks: 
+- Juniper devices
+- Appformix
+- SaltStack
+
+# webhooks Overview: 
+- A webhook is notification using an HTTP POST. A webhook is sent by a system A to push data (json body as example) to a system B when an event occurred in the system A. Then the system B will decide what to do with these details. 
+- Appformix supports webhooks. A notification is generated when the condition of an alarm is observed. You can configure an alarm to post notifications to an external HTTP endpoint. AppFormix will post a JSON payload to the endpoint for each notification.
+- SaltStack can listens to webhooks and generate equivalents ZMQ messages to the event bus  
+- SaltStack can reacts to webhooks
+
+# Building blocks role: 
+
+## Appformix:  
+- Collects data from Junos devices (JTI native telemetry and SNMP)
+-Generates webhooks notifications (HTTP POST with a JSON body) to SaltStack when the condition of an alarm is observed. The JSON body provides the device name and other details
+
+## SaltStack: 
+- In addition to the Salt master, Salt Junos proxy minions are required (one process per Junos device is required)  
+- The Salt master listens to webhooks 
+- The Salt master generates a ZMQ messages to the event bus when a webhook notification is received. The ZMQ message has a tag and data. The data structure is a dictionary, which contains information about the event.
+- The Salt master listens to junos syslog messages
+- The Salt master generates a ZMQ messages to the event bus when a junos syslog message is received. The ZMQ message has a tag and data. The data structure is a dictionary, which contains information about the event.
+- The Salt reactor binds sls files to event tags. The reactor has a list of event tags to be matched, and each event tag has a list of reactor SLS files to be run. So these sls files define the SaltStack reactions.
+- The sls reactor file used in this content does the following: it parses the data from the ZMQ message to extract the network device name. It then ask to the Junos proxy minion that manages the "faulty" device to execute an sls file.
+- The sls file executed by the Junos proxy minion collects junos show commands output and archieve the collected data to a git server  
+
+## Junos devices: 
+- They are monitored by Appformix
+- They send syslog messages to SaltStack
+
+
+# Requirements: 
+- Install appformix
+- Configure appformix for network devices monitoring
+- Install SaltStack
+
+# SaltStack configuration details for this demo
+
+## Salt master configuration file 
+
+ssh to the Salt master and open the salt master configuration file:
+```
+more /etc/salt/master
+```
+
+Make sure the master configuration file has these details:
+```
+engines:
+  - junos_syslog:
+      port: 516
+  - webhook:
+      port: 5001
+```
+```
+ext_pillar:
+  - git:
+    - master git@gitlab:organization/network_parameters.git
+```
+```
+fileserver_backend:
+  - git
+  - roots
+```
+```
+gitfs_remotes:
+  - ssh://git@gitlab/organization/network_model.git
+```
+
+So:
+- the Salt master is listening webhooks on port 5001. It generates equivalents ZMQ messages to the event bus
+runners are in the directory /srv/runners on the Salt master
+- the Salt master is listening junos syslog messages on port 516. It generates equivalents ZMQ messages to the event bus
+- external pillars are in this github repository (master branch)
+- Salt uses this github repository as a remote file server.
+
+
 ## SaltStack Git execution module basic demo
 
 ssh to the Salt master.
