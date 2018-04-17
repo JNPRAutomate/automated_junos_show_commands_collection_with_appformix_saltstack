@@ -2,7 +2,7 @@
 Appformix is used for network devices monitoring.  
 Appformix send webhook notifications to SaltStack.   
 The webhook notifications provides the device name and other details.  
-SaltStack automatically collects junos show command output on the "faulty" JUNOS device and archieve the output on a Git server.    
+SaltStack automatically collects junos show command output on the "faulty" JUNOS device and archive the output on a Git server.    
 
 # Demo building blocks: 
 - Juniper devices
@@ -29,7 +29,7 @@ SaltStack automatically collects junos show command output on the "faulty" JUNOS
 - The Salt master generates a ZMQ messages to the event bus when a junos syslog message is received. The ZMQ message has a tag and data. The data structure is a dictionary, which contains information about the event.
 - The Salt reactor binds sls files to event tags. The reactor has a list of event tags to be matched, and each event tag has a list of reactor SLS files to be run. So these sls files define the SaltStack reactions.
 - The sls reactor file used in this content does the following: it parses the data from the ZMQ message to extract the network device name. It then ask to the Junos proxy minion that manages the "faulty" device to execute an sls file.
-- The sls file executed by the Junos proxy minion collects junos show commands output and archieve the collected data to a git server  
+- The sls file executed by the Junos proxy minion collects junos show commands output and archive the collected data to a git server  
 
 ## Junos devices: 
 - They are monitored by Appformix
@@ -457,9 +457,9 @@ Run this command on the master to ask to the proxy core-rtr-p-01 to execute the 
 ```
 # salt core-rtr-p-01 state.apply collect_show_commands_example_2
 ```
-## sls file to collect junos show commands and to archieve the output to git
+## sls file to collect junos show commands and to archive the output to git
 
-This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data from junos devices (show commands) and archieve the data collected on a git server  
+This sls file [collect_data_and_archive_to_git.sls](collect_data_and_archive_to_git.sls) collectes data from junos devices (show commands) and archive the data collected on a git server  
 
 Add this file in the ```junos``` directory of the ```organization/network_model``` repository (```gitfs_remotes```) .  
 
@@ -480,7 +480,7 @@ base:
 {% endif %}
 ```
 
-The pillar ```data_collection``` is used by the file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls)  
+The pillar ```data_collection``` is used by the file [collect_data_and_archive_to_git.sls](collect_data_and_archive_to_git.sls)  
 Update the file ```production.sls``` in the repository ```organization/network_parameters``` (```ext_pillar```) to define the pillar ```data_collection``` 
 ```
 data_collection:  
@@ -493,10 +493,10 @@ data_collection:
 Example with the proxy ```core-rtr-p-02``` (it manages the network device ```core-rtr-p-02```).   
 Run this command on the master to ask to the proxy ```core-rtr-p-01``` to execute it.  
 ```
-salt core-rtr-p-01 state.apply junos.collect_data_and_archieve_to_git
+salt core-rtr-p-01 state.apply junos.collect_data_and_archive_to_git
 ```
 
-The data collected by the proxy ```core-rtr-p-01``` is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
+The data collected by the proxy ```core-rtr-p-01``` is archived in the directory [core-rtr-p-01](core-rtr-p-01)  
 
 
 ##  Update the Salt reactor
@@ -525,8 +525,8 @@ salt-run reactor.list
 
 Create the sls reactor file ```/srv/reactor/automate_show_commands.sls```.  
 It parses the data from the ZMQ message that has the tags ```salt/engines/hook/appformix_to_saltstack``` and extracts the network device name.  
-It then ask to the Junos proxy minion that manages the "faulty" device to apply the ```junos/collect_data_and_archieve_to_git.sls``` file.  
-the ```junos/collect_data_and_archieve_to_git.sls``` file executed by the Junos proxy minion collects show commands from the "faulty" device and archieve the data collected to a git server. 
+It then ask to the Junos proxy minion that manages the "faulty" device to apply the ```junos/collect_data_and_archive_to_git.sls``` file.  
+the ```junos/collect_data_and_archive_to_git.sls``` file executed by the Junos proxy minion collects show commands from the "faulty" device and archive the data collected to a git server. 
 
 ```
 # more /srv/reactor/automate_show_commands.sls
@@ -536,7 +536,7 @@ automate_show_commands:
   local.state.apply:
     - tgt: "{{ devicename }}"
     - arg:
-      - collect_data_and_archieve_to_git
+      - collect_data_and_archive_to_git
 ```
 
 # Run the demo: 
@@ -587,4 +587,4 @@ Trigger an alarm  to get a webhook notification sent by Appformix to SaltStack
 ```
 
 ## Verify on the git server 
-The data collected by the proxy ```core-rtr-p-01```  is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
+The data collected by the proxy ```core-rtr-p-01```  is archived in the directory [core-rtr-p-01](core-rtr-p-01)  
