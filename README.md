@@ -136,7 +136,7 @@ core-rtr-p-01:
     out:
         True
 ```
-## sls files with junos modules examples
+## examples of sls files to collect show commands 
 
 The files [collect_junos_show_commands_example_1.sls](collect_junos_show_commands_example_1.sls) and [collect_junos_show_commands_example_2.sls](collect_junos_show_commands_example_2.sls) are equivalents.  
 
@@ -178,10 +178,12 @@ The master asks to the proxy ```core-rtr-p-01``` to apply the sls file  [collect
 ```
 ## sls file to collect junos show commands and to archieve the output to git
 
-[collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls)
-
+This sls file [collect_data_and_archieve_to_git.sls](collect_data_and_archieve_to_git.sls) collectes data and archieve the data collected on a git server 
+Run this command on the master to ask to the proxy ```core-rtr-p-01``` to execute it.  
 ```
 # salt core-rtr-p-01 state.apply collect_data_and_archieve_to_git
 ```
+The data collected by the proxy ```core-rtr-p-01```  is archieved in the directory [core-rtr-p-01](core-rtr-p-01)  
+
 
 
