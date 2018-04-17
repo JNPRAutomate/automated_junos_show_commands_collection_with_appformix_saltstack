@@ -283,7 +283,7 @@ These commands are run from the master.
 Most of these commands are using the Git execution module.   
 So the master is asking to the minion ```core-rtr-p-01``` to execute these commands.    
 ```
-# salt core-rtr-p-01 git.clone /tmp/local_copy git@github.com:JNPRAutomate/appformix_saltstack_automated_show_commands_collection.git identity="/root/.ssh/id_rsa"
+# salt core-rtr-p-01 git.clone /tmp/local_copy git@github.com:JNPRAutomate/appformix_saltstack_show_commands_collection.git identity="/root/.ssh/id_rsa"
 core-rtr-p-01:
     True
 
