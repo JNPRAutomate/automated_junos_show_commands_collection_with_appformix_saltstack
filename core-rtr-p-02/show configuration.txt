@@ -1,5 +1,5 @@
 
-## Last commit: 2018-04-18 16:27:46 UTC by root
+## Last commit: 2018-04-18 16:44:41 UTC by root
 version 17.4R1.16;
 system {
     host-name core-rtr-p-02;
@@ -31,7 +31,7 @@ system {
         }
         host 192.168.128.174 {
             any any;
-            match UI_COMMIT_COMPLETED;
+            match SNMP_TRAP_LINK;
             port 516;
         }
         file messages {
@@ -61,6 +61,9 @@ interfaces {
             family iso;
             family mpls;
         }
+    }
+    ge-0/0/5 {
+        disable;
     }
     fxp0 {
         unit 0 {
