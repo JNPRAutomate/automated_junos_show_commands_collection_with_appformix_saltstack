@@ -590,7 +590,7 @@ Either you DIY, or, depending on the alarms you set, you can use one the automat
 Here's how to use the automation content available in the directory [trigger_alarms](trigger_alarms).  
 
 ### generate traffic between 2 routers 
-Add the file [generate_traffic.sls](trigger_alarms/generate_traffic.sls) to the directory ```junos``` of the repository ```organization/network_model```.  
+Add the file [generate_traffic.sls](trigger_alarms/generate_traffic.sls) to the directory ```junos``` of the gitlab repository ```organization/network_model``` (```gitfs_remotes```).  
 
 And run this command on the master:   
 ```
@@ -598,8 +598,8 @@ And run this command on the master:
 ```
 ### Change interface speed on a router
 
-Add the file [change_int_speed.sls](trigger_alarms/change_int_speed.sls) to the directory ```junos``` of the repository ```organization/network_model```.  
-Add the file [speed.set](trigger_alarms/speed.set) to the directory ```template``` of the repository ```organization/network_model```.    
+Add the file [change_int_speed.sls](trigger_alarms/change_int_speed.sls) to the directory ```junos``` of the gitlab repository ```organization/network_model``` (```gitfs_remotes```).  
+Add the file [speed.set](trigger_alarms/speed.set) to the directory ```template``` of the gitlab repository ```organization/network_model``` (```gitfs_remotes```).    
 Run this command on the master:   
 ```
 # salt "core-rtr-p-02" state.apply junos.change_int_speed
@@ -610,8 +610,8 @@ Run this command on the master:
 
 ### Change MTU on a router
 
-Add the file [change_mtu.sls](trigger_alarms/change_mtu.sls) to the directory ```junos``` of the repository ```organization/network_model```.  
-Add the file [mtu.set](trigger_alarms/mtu.set) to the directory ```template``` of the repository ```organization/network_model```.    
+Add the file [change_mtu.sls](trigger_alarms/change_mtu.sls) to the directory ```junos``` of the gitlab repository ```organization/network_model``` (```gitfs_remotes```).  
+Add the file [mtu.set](trigger_alarms/mtu.set) to the directory ```template``` of the gitlab repository ```organization/network_model``` (```gitfs_remotes```).    
 Run this command on the master:   
 ```
 # salt "core-rtr-p-02" state.apply junos.change_mtu
@@ -622,4 +622,6 @@ Run this command on the master:
 
 ## Verify on the git server 
 
-The data collected by the proxy ```core-rtr-p-01```  is archived in the directory [core-rtr-p-01](core-rtr-p-01)  
+The data collected by the proxy ```core-rtr-p-01```  is archived in the directory [core-rtr-p-01](core-rtr-p-01) 
+The data collected by the proxy ```core-rtr-p-02```  is archived in the directory [core-rtr-p-02](core-rtr-p-02)
+
