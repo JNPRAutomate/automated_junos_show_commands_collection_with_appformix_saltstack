@@ -487,6 +487,8 @@ Update the file ```production.sls``` in the repository ```organization/network_p
 data_collection:  
    - command: show interfaces  
    - command: show chassis hardware
+   - command: show version   
+   - command: show configuration
 ```
 
 ## Test your automation content manually from the master
