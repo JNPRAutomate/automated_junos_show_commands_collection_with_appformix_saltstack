@@ -12,7 +12,7 @@ Physical interface: ge-0/0/0, Enabled, Physical link is Up
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: fa:16:3e:ff:5b:4d, Hardware address: fa:16:3e:ff:5b:4d
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : None
@@ -109,9 +109,9 @@ Physical interface: ge-0/0/1, Enabled, Physical link is Up
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: fa:16:3e:26:b4:ac, Hardware address: fa:16:3e:26:b4:ac
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
-  Output rate    : 808 bps (0 pps)
+  Output rate    : 480 bps (0 pps)
   Active alarms  : None
   Active defects : None
   PCS statistics                      Seconds
@@ -126,8 +126,8 @@ Physical interface: ge-0/0/1, Enabled, Physical link is Up
 
   Logical interface ge-0/0/1.0 (Index 332) (SNMP ifIndex 528)
     Flags: Up SNMP-Traps 0x4004000 Encapsulation: ENET2
-    Input packets : 691069
-    Output packets: 690781
+    Input packets : 691322
+    Output packets: 691034
     Protocol inet, MTU: 1500
     Max nh cache: 75000, New hold nh limit: 75000, Curr nh cnt: 1,
     Curr new hold cnt: 0, NH drop cnt: 0
@@ -152,7 +152,7 @@ Physical interface: ge-0/0/2, Enabled, Physical link is Up
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: fa:16:3e:df:00:90, Hardware address: fa:16:3e:df:00:90
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : None
@@ -180,7 +180,7 @@ Physical interface: ge-0/0/3, Enabled, Physical link is Up
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: fa:16:3e:c0:d1:50, Hardware address: fa:16:3e:c0:d1:50
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : None
@@ -208,9 +208,9 @@ Physical interface: ge-0/0/4, Enabled, Physical link is Up
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: fa:16:3e:23:d6:ef, Hardware address: fa:16:3e:23:d6:ef
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
-  Input rate     : 0 bps (0 pps)
-  Output rate    : 480 bps (0 pps)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
+  Input rate     : 232 bps (0 pps)
+  Output rate    : 992 bps (1 pps)
   Active alarms  : None
   Active defects : None
   PCS statistics                      Seconds
@@ -225,8 +225,8 @@ Physical interface: ge-0/0/4, Enabled, Physical link is Up
 
   Logical interface ge-0/0/4.0 (Index 333) (SNMP ifIndex 529)
     Flags: Up SNMP-Traps 0x4004000 Encapsulation: ENET2
-    Input packets : 685392
-    Output packets: 739962
+    Input packets : 685619
+    Output packets: 740207
     Protocol inet, MTU: 1500
     Max nh cache: 75000, New hold nh limit: 75000, Curr nh cnt: 1,
     Curr new hold cnt: 0, NH drop cnt: 0
@@ -252,7 +252,7 @@ Physical interface: ge-0/0/5, Enabled, Physical link is Up
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: fa:16:3e:af:db:49, Hardware address: fa:16:3e:af:db:49
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : None
@@ -280,7 +280,7 @@ Physical interface: ge-0/0/6, Enabled, Physical link is Down
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: 2c:6b:f5:2d:f5:06, Hardware address: 2c:6b:f5:2d:f5:06
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : LINK
@@ -308,7 +308,7 @@ Physical interface: ge-0/0/7, Enabled, Physical link is Down
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: 2c:6b:f5:2d:f5:07, Hardware address: 2c:6b:f5:2d:f5:07
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : LINK
@@ -336,7 +336,7 @@ Physical interface: ge-0/0/8, Enabled, Physical link is Down
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: 2c:6b:f5:2d:f5:08, Hardware address: 2c:6b:f5:2d:f5:08
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : LINK
@@ -364,7 +364,7 @@ Physical interface: ge-0/0/9, Enabled, Physical link is Down
   Link flags     : None
   CoS queues     : 8 supported, 8 maximum usable queues
   Current address: 2c:6b:f5:2d:f5:09, Hardware address: 2c:6b:f5:2d:f5:09
-  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 15:56 ago)
+  Last flapped   : 2018-03-13 17:37:51 UTC (5w0d 16:04 ago)
   Input rate     : 0 bps (0 pps)
   Output rate    : 0 bps (0 pps)
   Active alarms  : LINK
@@ -419,14 +419,14 @@ Physical interface: em1, Enabled, Physical link is Up
   Interface flags: SNMP-Traps
   Link type      : Full-Duplex
   Current address: fa:16:3e:0f:87:a3, Hardware address: fa:16:3e:0f:87:a3
-  Last flapped   : 2018-03-13 17:36:36 UTC (5w0d 15:57 ago)
-    Input packets : 71303221
-    Output packets: 72474363
+  Last flapped   : 2018-03-13 17:36:36 UTC (5w0d 16:05 ago)
+    Input packets : 71316497
+    Output packets: 72488648
 
   Logical interface em1.0 (Index 3) (SNMP ifIndex 24)
     Flags: Up SNMP-Traps 0x4004000 Encapsulation: ENET2
-    Input packets : 71302666
-    Output packets: 72474363
+    Input packets : 71315942
+    Output packets: 72488648
     Protocol inet, MTU: 1500
     Max nh cache: 75000, New hold nh limit: 75000, Curr nh cnt: 1,
     Curr new hold cnt: 0, NH drop cnt: 0
@@ -458,7 +458,7 @@ Physical interface: em2, Enabled, Physical link is Up
   Link type      : Full-Duplex
   Link flags     : None
   Current address: fa:16:3e:b1:c9:51, Hardware address: fa:16:3e:b1:c9:51
-  Last flapped   : 2018-03-13 17:36:36 UTC (5w0d 15:57 ago)
+  Last flapped   : 2018-03-13 17:36:36 UTC (5w0d 16:05 ago)
     Input packets : 392
     Output packets: 34
 
@@ -492,14 +492,14 @@ Physical interface: fxp0, Enabled, Physical link is Up
   Interface flags: SNMP-Traps
   Link type      : Full-Duplex
   Current address: fa:16:3e:be:cb:d5, Hardware address: fa:16:3e:be:cb:d5
-  Last flapped   : 2018-03-13 17:36:36 UTC (5w0d 15:57 ago)
-    Input packets : 5741979
-    Output packets: 3434415
+  Last flapped   : 2018-03-13 17:36:36 UTC (5w0d 16:05 ago)
+    Input packets : 5745415
+    Output packets: 3435688
 
   Logical interface fxp0.0 (Index 4) (SNMP ifIndex 13)
     Flags: Up SNMP-Traps 0x4004000 Encapsulation: ENET2
-    Input packets : 5741371
-    Output packets: 3434415
+    Input packets : 5744807
+    Output packets: 3435688
     Protocol inet, MTU: 1500
     Max nh cache: 75000, New hold nh limit: 75000, Curr nh cnt: 7,
     Curr new hold cnt: 0, NH drop cnt: 0
@@ -567,8 +567,8 @@ Physical interface: lo0, Enabled, Physical link is Up
   Interface flags: SNMP-Traps
   Link flags     : None
   Last flapped   : Never
-    Input packets : 4162865
-    Output packets: 4162865
+    Input packets : 4163559
+    Output packets: 4163559
 
   Logical interface lo0.0 (Index 334) (SNMP ifIndex 16)
     Flags: SNMP-Traps Encapsulation: Unspecified
@@ -596,8 +596,8 @@ Physical interface: lo0, Enabled, Physical link is Up
 
   Logical interface lo0.16385 (Index 320) (SNMP ifIndex 22)
     Flags: SNMP-Traps Encapsulation: Unspecified
-    Input packets : 4160989
-    Output packets: 4160989
+    Input packets : 4161683
+    Output packets: 4161683
     Protocol inet, MTU: Unlimited
     Max nh cache: 0, New hold nh limit: 0, Curr nh cnt: 0, Curr new hold cnt: 0,
     NH drop cnt: 0
