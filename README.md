@@ -583,9 +583,6 @@ Salt provides a runner that displays events in real-time as they are received on
 ```
 
 Trigger an alarm  to get a webhook notification sent by Appformix to SaltStack 
-```
-# salt "core-rtr-p-02" junos.rpc 'ping' rapid=True
-```
 
 ## Verify on the git server 
 The data collected by the proxy ```core-rtr-p-01```  is archived in the directory [core-rtr-p-01](core-rtr-p-01)  
