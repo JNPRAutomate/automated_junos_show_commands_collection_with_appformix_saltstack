@@ -4,4 +4,4 @@ automate_show_commands:
   local.state.apply:
     - tgt: "{{ devicename }}"
     - arg:
-      - junos.collect_data_and_archive_to_git
+      - collect_data_and_archive_to_git

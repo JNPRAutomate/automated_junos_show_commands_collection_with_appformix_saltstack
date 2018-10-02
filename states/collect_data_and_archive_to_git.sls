@@ -8,7 +8,7 @@ git clone:
   module.run:
     - name: git.clone
     - cwd: /tmp/local_repo
-    - url: git@github.com:JNPRAutomate/event_driven_junos_show_commands_collection_with_appformix_saltstack.git
+    - url: git@gitlab_ip_address:organization/data_collected.git
     - identity: "/root/.ssh/id_rsa"
 
 git config set email:
